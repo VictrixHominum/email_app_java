@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Email {
@@ -5,9 +6,11 @@ public class Email {
     private String lastName;
     private String password;
     private String department;
+    private String email;
     private int mailboxCapacity;
     private int defaultPasswordLength = 10;
     private String alternateEmail;
+    private String companySuffix = "jchhconsulting.com";
 
     // Constructor to receive first and last name
 
@@ -23,6 +26,15 @@ public class Email {
         //Call a method generating a random password
         this.password = randomPassword(this.defaultPasswordLength);
         System.out.println("Your password is: " + this.password);
+
+        //Combine elements to generate email
+        if (!department.isEmpty()) {
+            this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
+        } else {
+            this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + companySuffix;
+        }
+        System.out.println("Your email is: " + email);
+
     }
 
     // Ask for department
@@ -31,9 +43,9 @@ public class Email {
         Scanner in  = new Scanner(System.in);
         int depChoice = in.nextInt();
         in.close();
-        if (depChoice == 1) {return "Sales";}
-        else if (depChoice ==2) {return "Development";}
-        else if (depChoice ==3) {return "Accounting";}
+        if (depChoice == 1) {return "ssales";}
+        else if (depChoice ==2) {return "development";}
+        else if (depChoice ==3) {return "accounting";}
         else {return "";}
     }
 
